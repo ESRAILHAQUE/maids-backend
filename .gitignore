@@ -9,6 +9,7 @@ build/
 logs/
 *.log
 .pm2
+# Note: ecosystem.config.js is kept in repo for deployment
 
 # Environment variables
 .env
