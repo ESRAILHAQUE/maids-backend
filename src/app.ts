@@ -1,4 +1,5 @@
 import express, { Application } from "express";
+import cors from "cors";
 import { env } from "./config/env";
 import { logger } from "./utils/logger";
 import routes from "./routes";
@@ -10,6 +11,16 @@ import { errorHandler, notFoundHandler } from "./middleware/error.middleware";
  */
 
 const app: Application = express();
+
+// CORS middleware - must be before other middleware
+app.use(cors({
+  origin: env.nodeEnv === 'production'
+    ? process.env.FRONTEND_URL || 'http://localhost:3000'
+    : ['http://localhost:3000', 'http://127.0.0.1:3000'],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+}));
 
 // Body parser middleware
 app.use(express.json());

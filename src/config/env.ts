@@ -13,6 +13,12 @@ interface EnvConfig {
   jwtSecret: string;
   jwtExpire: string;
   apiVersion: string;
+  emailHost?: string;
+  emailPort?: number;
+  emailUser?: string;
+  emailPassword?: string;
+  emailFrom?: string;
+  frontendUrl?: string;
 }
 
 /**
@@ -36,5 +42,11 @@ export const env: EnvConfig = {
   jwtSecret: process.env.JWT_SECRET || '',
   jwtExpire: process.env.JWT_EXPIRE || '7d',
   apiVersion: process.env.API_VERSION || 'v1',
+  emailHost: process.env.EMAIL_HOST,
+  emailPort: process.env.EMAIL_PORT ? parseInt(process.env.EMAIL_PORT, 10) : undefined,
+  emailUser: process.env.EMAIL_USER,
+  emailPassword: process.env.EMAIL_PASSWORD,
+  emailFrom: process.env.EMAIL_FROM || 'noreply@maids.com',
+  frontendUrl: process.env.FRONTEND_URL || 'http://localhost:3000',
 };
 
