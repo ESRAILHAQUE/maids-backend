@@ -18,5 +18,7 @@ router.get('/health', (_req, res) => {
 router.use(`/${apiVersion}/auth`, authRoutes);
 router.use(`/${apiVersion}/users`, userRoutes);
 router.use(`/${apiVersion}/bookings`, bookingRoutes);
+router.use(`/${apiVersion}/clients`, require('../modules/client/client.routes').default);
+router.use(`/${apiVersion}/staff`, require('../modules/staff/staff.routes').default);
 
 export default router;
